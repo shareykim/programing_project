@@ -1,8 +1,3 @@
-from google.colab import drive
-drive.mount('/content/drive')
-
-
-from ast import JoinedStr
 import requests
 import json
 
@@ -50,7 +45,7 @@ def get_distance_and_time(start_lat, start_lon, goal_lat, goal_lon):
 
 #주소.json파일 받아오기
 
-location_path='/content/drive/MyDrive/플밍2/주소.json'
+location_path='C:\\Users\\USER\\Documents\\2024-2학기\\프로그래밍및실습2\\주소.json'
 
 with open(location_path, 'r', encoding='utf-8') as file:
     data = json.load(file)
@@ -73,7 +68,7 @@ for i in range(n):
       거리json[i][j]=result
 
 #거리.json파일 생성
-file_path='/content/drive/MyDrive/플밍2/거리.json'
+file_path='C:\\Users\\USER\\Documents\\2024-2학기\\프로그래밍및실습2\\거리.json'
 #거리.json파일에 거리json 2차원 배열로 입력
 with open(file_path, 'w', encoding='UTF-8') as json_file:
     json.dump(거리json, json_file, ensure_ascii=False, indent=4)
