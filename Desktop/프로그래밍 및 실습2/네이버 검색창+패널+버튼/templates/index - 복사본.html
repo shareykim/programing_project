@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>강릉 음식점 검색</title>
+</head>
+<body>
+    <h1>강릉 내 음식점 검색</h1>
+    <form method="POST">
+        <input type="text" name="query" placeholder="검색어를 입력하세요">
+        <button type="submit">검색</button>
+    </form>
+
+    {% if results %}
+        <h2>검색 결과</h2>
+        <ul>
+            {% for item in results %}
+                <li>
+                    <strong>이름:</strong> {{ item.title | safe }}<br>
+                    <strong>주소:</strong> {{ item.address }}<br>
+                    <strong>도로명 주소:</strong> {{ item.roadAddress }}<br>
+                </li>
+                <hr>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

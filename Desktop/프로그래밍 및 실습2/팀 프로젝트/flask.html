@@ -1,0 +1,45 @@
+from flask import Flask, render_template_string
+
+app = Flask(__name__)
+
+NAVER_MAP_CLIENT_ID = "l10kq6x6md"
+
+@app.route('/')
+def index():
+
+    html_template = f"""
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>네이버 지도</title>
+        <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId={NAVER_MAP_CLIENT_ID}"></script>
+        <style>
+            #map {{ width: 100%; height: 500px; }}
+        </style>
+    </head>
+    <body>
+        <h1>네이버 지도</h1>
+        <div id="map"></div>
+
+        <script>
+            var mapOptions = {{
+                center: new naver.maps.LatLng(37.5665, 126.9780),  // 서울 시청 좌표
+                zoom: 13
+            }};
+            var map = new naver.maps.Map('map', mapOptions);
+
+            // 마커 추가
+            var marker = new naver.maps.Marker({{
+                position: new naver.maps.LatLng(37.5665, 126.9780),
+                map: map
+            }});
+        </script>
+    </body>
+    </html>
+    """
+    return render_template_string(html_template)
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5001)
